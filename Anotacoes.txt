@@ -1,0 +1,5 @@
+Versão Python: 3.6.8
+Versão Requerida pelo flask: 3.5
+
+Instação do Flask:
+pip3 install Flask
