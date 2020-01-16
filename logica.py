@@ -101,6 +101,7 @@ def tradutor(entrada):
 	return saida
 
 '''
+...para os testes
 while True:
 	entrada = input('Informe um numero de -99999 a 99999: ')
 	print(tradutor(entrada))
