@@ -18,6 +18,11 @@ def numero_com_2_digitos(valor):
 		texto = dezenas[1]
 	elif valor == '20':
 		texto = dezenas[2]
+
+	#Caso haja zero à esquerda
+	elif valor[0] == '0':
+		texto = unidades[int(valor[1])]
+
 	elif valor[1] == '0':
 		texto = dezenas[int(valor[0])]
 	else:
@@ -29,12 +34,11 @@ def numero_com_3_digitos(valor):
 		texto = 'cem'
 	elif valor[1] == '0' and valor[2] == '0':
 		texto = centenas[int(valor[0])]
-	elif valor[1] == '0':
-		texto = centenas[int(valor[0])] + ' e ' + unidades[int(valor[2])]
-	elif valor[2] == '0':
-		texto = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])]
+	#Casos com zero à esquerda
+	elif valor[0] == '0':
+		texto = numero_com_2_digitos(valor[1:])
 	else:
-		texto = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])] + ' e ' + unidades[int(valor[2])]
+		texto = centenas[int(valor[0])] + ' e ' + numero_com_2_digitos(valor[1:])
 	return texto
 
 def numero_com_4_digitos(valor):
@@ -42,8 +46,15 @@ def numero_com_4_digitos(valor):
 		texto = 'mil'
 	elif valor[0] == '1':
 		texto = 'mil e ' + numero_com_3_digitos(valor[1:])
+	#Caso com zero à esquerda
+	elif valor[0] == '0':
+		texto = numero_com_3_digitos(valor[1:])
 	else:
 		texto = unidades[int(valor[0])] + ' mil e ' + numero_com_3_digitos(valor[1:])
+	return texto
+
+def numero_com_5_digitos(valor):
+	texto = numero_com_2_digitos(valor[:2]) + ' mil e ' + numero_com_3_digitos(valor[2:])
 	return texto
 
 def tradutor(entrada):
@@ -51,7 +62,7 @@ def tradutor(entrada):
 
 	#Pegar apenas o valor absoluto, com tipo string mesmo
 	if  negativo == True:
-		#Copia entrada elimiando o primeiro caractere
+		#Copia entrada elimiando o primeiro caractere('-')
 		valor = entrada[1:]
 	else:
 		valor = entrada
@@ -70,6 +81,9 @@ def tradutor(entrada):
 
 	elif tamanho == 4:
 		saida = numero_com_4_digitos(valor)
+
+	elif tamanho == 5:
+		saida = numero_com_5_digitos(valor)
 
 	#Adicionar sinal negativo?
 	if negativo == 1:
