@@ -1,3 +1,6 @@
+#Autor - Felipe Siedschlag Yopán
+#Feito como parte do desafio do sistema de seleção de estágio da Certi
+
 unidades = ('zero','um','dois','tres','quatro',
 	'cinco', 'seis', 'sete', 'oito', 'nove')
 
@@ -10,6 +13,36 @@ dezenas = ('', 'dez','vinte','trinta','quarenta','cinquenta',
 centenas = ('', 'cento','duzentos','trezentos','quatrocentos','quinhentos',
 	'seiscentos', 'setecentos', 'oitocentos', 'novecentos')
 
+def numero_com_2_digitos(valor):
+	if valor == '10':
+		texto = dezenas[1]
+	elif valor == '20':
+		texto = dezenas[2]
+	elif valor[1] == '0':
+		texto = dezenas[int(valor[0])]
+	else:
+		texto = dezenas[int(valor[0])] + ' e ' + unidades[int(valor[1])]
+	return texto
+
+def numero_com_3_digitos(valor):
+	if valor == '100':
+		texto = 'cem'
+	elif valor[1] == '0' and valor[2] == '0':
+		texto = centenas[int(valor[0])]
+	elif valor[1] == '0':
+		texto = centenas[int(valor[0])] + ' e ' + unidades[int(valor[2])]
+	elif valor[2] == '0':
+		texto = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])]
+	else:
+		texto = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])] + ' e ' + unidades[int(valor[2])]
+	return texto
+
+def numero_com_4_digitos(valor):
+	if valor == '1000':
+		texto = 'mil'
+	elif valor[0] == '1':
+		texto = 'mil e ' + numero_com_3_digitos(valor[1:])
+	return texto
 
 def tradutor(entrada):
 	negativo = entrada.startswith('-')
@@ -28,40 +61,13 @@ def tradutor(entrada):
 		saida = unidades[int(valor)]
 
 	elif tamanho == 2:
-		if valor == '10':
-			saida = dezenas[1]
-		elif valor == '20':
-			saida = dezenas[2]
-		elif valor[1] == '0':
-			saida = dezenas[int(valor[0])]
-		else:
-			saida = dezenas[int(valor[0])] + ' e ' + unidades[int(valor[1])]
+		saida = numero_com_2_digitos(valor)
 
 	elif tamanho == 3:
-		if valor == '100':
-			saida = 'cem'
-		elif valor[1] == '0' and valor[2] == '0':
-			saida = centenas[int(valor[0])]
-		elif valor[1] == '0':
-			saida = centenas[int(valor[0])] + ' e ' + unidades[int(valor[2])]
-
-		elif valor[2] == '0':
-			saida = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])]
-		else:
-			saida = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])] + ' e ' + unidades[int(valor[2])]
+		saida = numero_com_3_digitos(valor)
 
 	elif tamanho == 4:
-		if valor == '1000':
-			saida = 'mil'
-		elif valor[1] == '0' and valor[2] == '0' and valor[3] == '0':
-			saida = unidades[int(valor[0])] + ' mil'
-		elif valor[1] == '0' and valor[2] == '0':
-			saida = unidades[int(valor[0])] + ' mil e ' + unidades[int(valor[3])]
-		elif valor[1] == '0':
-			saida = unidades[int(valor[0])] + ' mil e ' + dezenas[int(valor[2])] + ' e ' + unidades[int(valor[3])]
-		else:
-			saida = unidades[int(valor[0])] + ' mil e ' + centenas[int(valor[1])] + ' e ' + dezenas[int(valor[2])] + ' e ' + unidades[int(valor[3])]
-
+		saida = numero_com_4_digitos(valor)
 
 	#Adicionar sinal negativo?
 	if negativo == 1:
