@@ -42,6 +42,8 @@ def numero_com_4_digitos(valor):
 		texto = 'mil'
 	elif valor[0] == '1':
 		texto = 'mil e ' + numero_com_3_digitos(valor[1:])
+	else:
+		texto = unidades[int(valor[0])] + ' mil e ' + numero_com_3_digitos(valor[1:])
 	return texto
 
 def tradutor(entrada):
@@ -76,5 +78,5 @@ def tradutor(entrada):
 	return saida
 
 while True:
-	entrada = input('Informe um numero de 0 a 999: ')
+	entrada = input('Informe um numero de -99999 a 99999: ')
 	print(tradutor(entrada))
