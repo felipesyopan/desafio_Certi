@@ -14,19 +14,28 @@ centenas = ('', 'cento','duzentos','trezentos','quatrocentos','quinhentos',
 	'seiscentos', 'setecentos', 'oitocentos', 'novecentos')
 
 def numero_com_2_digitos(valor):
-	if valor == '10':
-		texto = dezenas[1]
-	elif valor == '20':
-		texto = dezenas[2]
+	valor_int = int(valor)
 
-	#Caso haja zero à esquerda
-	elif valor[0] == '0':
-		texto = unidades[int(valor[1])]
+	#Filtragem dos números 11-19
+	if valor_int > 10 and valor_int < 20:
+		texto = xi_xix[valor_int-11]
 
-	elif valor[1] == '0':
-		texto = dezenas[int(valor[0])]
+	#Regras para os outros valores
 	else:
-		texto = dezenas[int(valor[0])] + ' e ' + unidades[int(valor[1])]
+		if valor == '10':
+			texto = dezenas[1]
+		elif valor == '20':
+			texto = dezenas[2]
+
+		#Caso haja zero à esquerda
+		elif valor[0] == '0':
+			texto = unidades[int(valor[1])]
+
+		elif valor[1] == '0':
+			texto = dezenas[int(valor[0])]
+		else:
+			texto = dezenas[int(valor[0])] + ' e ' + unidades[int(valor[1])]
+
 	return texto
 
 def numero_com_3_digitos(valor):
@@ -91,6 +100,8 @@ def tradutor(entrada):
 
 	return saida
 
+'''
 while True:
 	entrada = input('Informe um numero de -99999 a 99999: ')
 	print(tradutor(entrada))
+'''
