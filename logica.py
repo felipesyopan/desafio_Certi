@@ -12,42 +12,60 @@ centenas = ('', 'cento','duzentos','trezentos','quatrocentos','quinhentos',
 
 
 def tradutor(entrada):
-	tamanho = len(entrada)
-	neg = entrada.find('-')
-	if neg == -1:
-		#print('Não é negativo')
-		negativo = 0
+	negativo = entrada.startswith('-')
+
+	#Pegar apenas o valor absoluto, com tipo string mesmo
+	if  negativo == True:
+		#Copia entrada elimiando o primeiro caractere
+		valor = entrada[1:]
 	else:
-		tamanho = tamanho-1
-		negativo = 1
+		valor = entrada
+
+	#Verica o tamanho em dígitos do valor
+	tamanho = len(valor)
 
 	if tamanho == 1:
-		saida = unidades[int(entrada)]
+		saida = unidades[int(valor)]
 
 	elif tamanho == 2:
-		if entrada == '10':
+		if valor == '10':
 			saida = dezenas[1]
-		elif entrada == '20':
+		elif valor == '20':
 			saida = dezenas[2]
-		elif entrada[1] == '0':
-			saida = dezenas[int(entrada[0])]
+		elif valor[1] == '0':
+			saida = dezenas[int(valor[0])]
 		else:
-			saida = dezenas[int(entrada[0])] + ' e ' + unidades[int(entrada[1])]
+			saida = dezenas[int(valor[0])] + ' e ' + unidades[int(valor[1])]
 
 	elif tamanho == 3:
-		if entrada == '100':
+		if valor == '100':
 			saida = 'cem'
-		elif entrada[1] == '0':
-			saida = centenas[int(entrada[0])] + ' e ' + unidades[int(entrada[2])]
+		elif valor[1] == '0' and valor[2] == '0':
+			saida = centenas[int(valor[0])]
+		elif valor[1] == '0':
+			saida = centenas[int(valor[0])] + ' e ' + unidades[int(valor[2])]
 
-		elif entrada[2] == '0':
-			saida = centenas[int(entrada[0])] + ' e ' + dezenas[int(entrada[1])]
+		elif valor[2] == '0':
+			saida = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])]
 		else:
-			saida = centenas[int(entrada[0])] + ' e ' + dezenas[int(entrada[1])] + ' e ' + unidades[int(entrada[2])]
+			saida = centenas[int(valor[0])] + ' e ' + dezenas[int(valor[1])] + ' e ' + unidades[int(valor[2])]
+
+	elif tamanho == 4:
+		if valor == '1000':
+			saida = 'mil'
+		elif valor[1] == '0' and valor[2] == '0' and valor[3] == '0':
+			saida = unidades[int(valor[0])] + ' mil'
+		elif valor[1] == '0' and valor[2] == '0':
+			saida = unidades[int(valor[0])] + ' mil e ' + unidades[int(valor[3])]
+		elif valor[1] == '0':
+			saida = unidades[int(valor[0])] + ' mil e ' + dezenas[int(valor[2])] + ' e ' + unidades[int(valor[3])]
+		else:
+			saida = unidades[int(valor[0])] + ' mil e ' + centenas[int(valor[1])] + ' e ' + dezenas[int(valor[2])] + ' e ' + unidades[int(valor[3])]
+
 
 	#Adicionar sinal negativo?
 	if negativo == 1:
-		saida = 'menos' + saida
+		saida = 'menos ' + saida
 
 	return saida
 
