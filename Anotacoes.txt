@@ -7,4 +7,5 @@ pip3 install Flask
 Alguns testes que precisam ser feitos:
     Verificar se é um número;
     Verificar se está entre -99999 e 99999;
+    Verificar zeros à esquerda;
 

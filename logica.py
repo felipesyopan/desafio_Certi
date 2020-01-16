@@ -15,7 +15,7 @@ def tradutor(entrada):
 	tamanho = len(entrada)
 	neg = entrada.find('-')
 	if neg == -1:
-		print('Não é negativo')
+		#print('Não é negativo')
 		negativo = 0
 	else:
 		tamanho = tamanho-1
@@ -45,8 +45,12 @@ def tradutor(entrada):
 		else:
 			saida = centenas[int(entrada[0])] + ' e ' + dezenas[int(entrada[1])] + ' e ' + unidades[int(entrada[2])]
 
+	#Adicionar sinal negativo?
+	if negativo == 1:
+		saida = 'menos' + saida
+
 	return saida
 
 while True:
-	entrada = input('Informe um numero de 0 a 99: ')
+	entrada = input('Informe um numero de 0 a 999: ')
 	print(tradutor(entrada))
