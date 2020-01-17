@@ -1,6 +1,5 @@
 #Autor - Felipe Siedschlag Yopán
 #Feito como parte do desafio do sistema de seleção de estágio da Certi
-
 unidades = ('zero','um','dois','tres','quatro',
 	'cinco', 'seis', 'sete', 'oito', 'nove')
 
@@ -93,9 +92,12 @@ def tradutor(entrada):
 
 	elif tamanho == 5:
 		saida = numero_com_5_digitos(valor)
+	else:
+		negativo = False
+		saida = "Numero de tamanho inválido!"
 
 	#Adicionar sinal negativo?
-	if negativo == 1:
+	if negativo == True:
 		saida = 'menos ' + saida
 
 	return saida
