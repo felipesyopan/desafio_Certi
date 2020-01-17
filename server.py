@@ -10,7 +10,7 @@ def index():
 
 @app.route("/<string:entrada>", methods = ["GET"])
 def traduzir(entrada):
-	#Se a string de entrada representa um valor decial,
+	#Se a string de entrada representa um valor decimal,
 	#ou começa com '-' e o restante dela representa um valor decimal, traduz e responde.
 	#Caso contrário, o formato é irregular e envia um aviso como resposta!
 	if entrada.isdecimal() or ( entrada.startswith('-') and entrada[1:].isdecimal() ):
