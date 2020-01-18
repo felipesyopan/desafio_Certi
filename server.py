@@ -10,10 +10,8 @@ def index():
 
 @app.route("/<string:entrada>", methods = ["GET"])
 def traduzir(entrada):
-	#Se a string de entrada representa um valor decimal,
-	#ou começa com '-' e o restante dela representa um valor decimal, traduz e responde.
-	#Caso contrário, o formato é irregular e envia um aviso como resposta!
-	if entrada.isdecimal() or ( entrada.startswith('-') and entrada[1:].isdecimal() ):
+
+	if ( entrada.isdecimal() and len(entrada) < 6 ) or ( entrada.startswith('-') and entrada[1:].isdecimal() and len(entrada) < 7):
 		resposta = logica.tradutor(entrada)
 		dicionario = { "extenso": resposta }
 		resultado_json = json.dumps(dicionario)

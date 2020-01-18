@@ -40,6 +40,8 @@ def numero_com_2_digitos(valor):
 def numero_com_3_digitos(valor):
 	if valor == '100':
 		texto = 'cem'
+	elif valor[0] == '0' and valor[1] == '0':
+		texto = unidades[int(valor[2])]
 	elif valor[1] == '0' and valor[2] == '0':
 		texto = centenas[int(valor[0])]
 	#Casos com zero à esquerda
@@ -62,7 +64,10 @@ def numero_com_4_digitos(valor):
 	return texto
 
 def numero_com_5_digitos(valor):
-	texto = numero_com_2_digitos(valor[:2]) + ' mil e ' + numero_com_3_digitos(valor[2:])
+	if valor[0] == '0' and valor[1] == '0':
+		texto = numero_com_3_digitos(valor[2:])
+	else:
+		texto = numero_com_2_digitos(valor[:2]) + ' mil e ' + numero_com_3_digitos(valor[2:])
 	return texto
 
 def tradutor(entrada):
@@ -94,7 +99,7 @@ def tradutor(entrada):
 		saida = numero_com_5_digitos(valor)
 	else:
 		negativo = False
-		saida = "Numero de tamanho inválido!"
+		saida = "Numero de tamanho invalido!"
 
 	#Adicionar sinal negativo?
 	if negativo == True:
