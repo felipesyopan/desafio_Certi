@@ -3,7 +3,7 @@
 ## Requisitos para rodar:
 
 - Python 3.5 (Requisito para o Flask com Python 3)
-- Flask -> [Guia oficial de instalação](https://flask.palletsprojects.com/en/1.1.x/installation/#python-version)
+- Flask -> [Guia oficial de instalação](https://flask.palletsprojects.com/en/1.1.x/installation/#python-version) , é basicamente: 'pip3 install Flask'
 
 ## Sistema onde foi desenvolvido:
 

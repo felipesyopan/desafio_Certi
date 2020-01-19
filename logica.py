@@ -1,5 +1,8 @@
 #Autor - Felipe Siedschlag Yopán
 #Feito como parte do desafio do sistema de seleção de estágio da Certi
+
+#Tuplas guardando as strings usadas para formar os números por extenso:
+################################################################################
 unidades = ('zero','um','dois','tres','quatro',
 	'cinco', 'seis', 'sete', 'oito', 'nove')
 
@@ -11,7 +14,9 @@ dezenas = ('', 'dez','vinte','trinta','quarenta','cinquenta',
 
 centenas = ('', 'cento','duzentos','trezentos','quatrocentos','quinhentos',
 	'seiscentos', 'setecentos', 'oitocentos', 'novecentos')
+################################################################################
 
+#Função responsável por tratar números com 2 dígitros
 def numero_com_2_digitos(valor):
 	valor_int = int(valor)
 
@@ -21,32 +26,33 @@ def numero_com_2_digitos(valor):
 
 	#Regras para os outros valores
 	else:
-		if valor == '10':
-			texto = dezenas[1]
-		elif valor == '20':
-			texto = dezenas[2]
-
-		#Caso haja zero à esquerda
-		elif valor[0] == '0':
+		#Caso em que haja zero à esquerda
+		if valor[0] == '0':
 			texto = unidades[int(valor[1])]
-
+		#Caso em que haja o zero à direita, para não haver, por exemplo, 'vinte e zero'.
 		elif valor[1] == '0':
 			texto = dezenas[int(valor[0])]
+		#Caso geral
 		else:
 			texto = dezenas[int(valor[0])] + ' e ' + unidades[int(valor[1])]
 
 	return texto
 
+#Função responsável por tratar números com 3 dígitros
 def numero_com_3_digitos(valor):
+	#Caso único em que ocorre 'cem', o restante usa 'cento'
 	if valor == '100':
 		texto = 'cem'
+	#Caso o número venha no formato '00X'
 	elif valor[0] == '0' and valor[1] == '0':
 		texto = unidades[int(valor[2])]
+	#Caso o número venha no formato 'X00'
 	elif valor[1] == '0' and valor[2] == '0':
 		texto = centenas[int(valor[0])]
-	#Casos com zero à esquerda
+	#Caso com um zero à esquerda
 	elif valor[0] == '0':
 		texto = numero_com_2_digitos(valor[1:])
+	#Caso geral
 	else:
 		texto = centenas[int(valor[0])] + ' e ' + numero_com_2_digitos(valor[1:])
 	return texto
@@ -78,11 +84,13 @@ def tradutor(entrada):
 		#Copia entrada elimiando o primeiro caractere('-')
 		valor = entrada[1:]
 	else:
+		#Copia a entrada na íntegra
 		valor = entrada
 
-	#Verica o tamanho em dígitos do valor
+	#Verifica o tamanho em dígitos do valor
 	tamanho = len(valor)
 
+	#O número é traduzido em função de seu tamanho em dígitos
 	if tamanho == 1:
 		saida = unidades[int(valor)]
 
@@ -99,6 +107,7 @@ def tradutor(entrada):
 		saida = numero_com_5_digitos(valor)
 	else:
 		negativo = False
+		#Resposta padrão caso use essa função em outro software
 		saida = "Numero de tamanho invalido!"
 
 	#Adicionar sinal negativo?
