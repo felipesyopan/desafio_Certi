@@ -9,10 +9,6 @@
 
 - Linux Mint 19.2 Cinnamon
 - Python 3.6.8
-- Flask-1.1.1 
-    Contendo
-    -- Jinja2-2.10.3 
-    -- MarkupSafe-1.1.1 
-    -- Werkzeug-0.16.0 
-    -- click-7.0 
-    -- itsdangerous-1.1.0
+- Flask-1.1.1, contendo: Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 click-7.0 itsdangerous-1.1.0
+
+
