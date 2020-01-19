@@ -11,4 +11,9 @@
 - Python 3.6.8
 - Flask-1.1.1, contendo: Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 click-7.0 itsdangerous-1.1.0
 
+## Como rodar e testar o servidor:
+
+- Abrir o terminal no diretório do projeto
+- Rodar o arquivo server.py com o python3
+- Ir ao endereço 'http://localhost:3000/'
 
