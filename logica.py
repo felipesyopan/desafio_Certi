@@ -57,21 +57,30 @@ def numero_com_3_digitos(valor):
 		texto = centenas[int(valor[0])] + ' e ' + numero_com_2_digitos(valor[1:])
 	return texto
 
+#Função responsável por tratar números com 4 dígitros
 def numero_com_4_digitos(valor):
+	#Específico parar 1000, caso contrário daria um mil...
 	if valor == '1000':
 		texto = 'mil'
+	#Caso em que o dígito de milhar é '1', também para não ficar 'um mil'
 	elif valor[0] == '1':
 		texto = 'mil e ' + numero_com_3_digitos(valor[1:])
 	#Caso com zero à esquerda
 	elif valor[0] == '0':
 		texto = numero_com_3_digitos(valor[1:])
 	else:
+	#Caso geral
 		texto = unidades[int(valor[0])] + ' mil e ' + numero_com_3_digitos(valor[1:])
 	return texto
 
 def numero_com_5_digitos(valor):
+	#Aqui o número é separado em duas partes, uma correspondente aos milhares,
+	#e outra às centenas.
+
+	#Caso 00XXX
 	if valor[0] == '0' and valor[1] == '0':
 		texto = numero_com_3_digitos(valor[2:])
+	#Caso geral
 	else:
 		texto = numero_com_2_digitos(valor[:2]) + ' mil e ' + numero_com_3_digitos(valor[2:])
 	return texto
