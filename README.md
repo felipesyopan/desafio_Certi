@@ -15,5 +15,5 @@
 
 - Abrir o terminal no diretório do projeto
 - Rodar o arquivo server.py com o python3
-- Ir ao endereço 'http://localhost:3000/'
+- No navegador, ir até o endereço http://localhost:3000/
 
