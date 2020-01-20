@@ -66,7 +66,7 @@ def numero_com_4_digitos(valor):
 	elif valor[0] == '1':
 		texto = 'mil e ' + numero_com_3_digitos(valor[1:])
 	#Caso para as unidades de milhar, evita que a resposta seja 'dois mil e zero', por exemplo
-	elif valor[1] == '0' and valor[2] == '0' and valor[2] == '0':
+	elif valor[1] != '0' and valor[1] == '0' and valor[2] == '0' and valor[3] == '0':
 		texto = unidades[int(valor[0])] + ' mil'
 	#Caso com zero à esquerda
 	elif valor[0] == '0':
