@@ -65,6 +65,9 @@ def numero_com_4_digitos(valor):
 	#Caso em que o dígito de milhar é '1', também para não ficar 'um mil'
 	elif valor[0] == '1':
 		texto = 'mil e ' + numero_com_3_digitos(valor[1:])
+	#Caso para as unidades de milhar, evita que a resposta seja 'dois mil e zero', por exemplo
+	elif valor[1] == '0' and valor[2] == '0' and valor[2] == '0':
+		texto = unidades[int(valor[0])] + ' mil'
 	#Caso com zero à esquerda
 	elif valor[0] == '0':
 		texto = numero_com_3_digitos(valor[1:])
@@ -80,6 +83,9 @@ def numero_com_5_digitos(valor):
 	#Caso 00XXX
 	if valor[0] == '0' and valor[1] == '0':
 		texto = numero_com_3_digitos(valor[2:])
+	#Caso XX000, evita que a resposta seja 'vinte e dois mil e zero', por exemplo
+	elif valor[2] == '0' and valor[3] == '0' and valor[4] == '0':
+		texto = numero_com_2_digitos(valor[:2]) + ' mil'
 	#Caso geral
 	else:
 		texto = numero_com_2_digitos(valor[:2]) + ' mil e ' + numero_com_3_digitos(valor[2:])
