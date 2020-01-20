@@ -96,7 +96,7 @@ def tradutor(entrada):
 
 	#Pegar apenas o valor absoluto, com tipo string mesmo
 	if  negativo == True:
-		#Copia entrada elimiando o primeiro caractere('-')
+		#Copia entrada eliminando o primeiro caractere('-')
 		valor = entrada[1:]
 	else:
 		#Copia a entrada na íntegra
