@@ -131,10 +131,3 @@ def tradutor(entrada):
 		saida = 'menos ' + saida
 
 	return saida
-
-'''
-...para os testes
-while True:
-	entrada = input('Informe um numero de -99999 a 99999: ')
-	print(tradutor(entrada))
-'''
