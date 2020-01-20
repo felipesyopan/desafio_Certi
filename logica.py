@@ -126,7 +126,8 @@ def tradutor(entrada):
 		saida = "Numero de tamanho invalido!"
 
 	#Adicionar sinal negativo?
-	if negativo == True:
+	#Excluindo a possibilidade de responder: 'menos zero'
+	if negativo == True and saida != 'zero':
 		saida = 'menos ' + saida
 
 	return saida
